@@ -27,8 +27,8 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password'  => 'hashed',
-            'role'      => UserRole::class,
+            'password' => 'hashed',
+            'role' => UserRole::class,
             'is_active' => 'boolean',
         ];
     }
@@ -46,5 +46,14 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->role === UserRole::Admin;
+    }
+
+    public function dashboardRoute(): string
+    {
+        return match ($this->role) {
+            UserRole::Seeker => 'seeker.dashboard',
+            UserRole::Owner => 'owner.dashboard',
+            UserRole::Admin => 'admin.dashboard',
+        };
     }
 }

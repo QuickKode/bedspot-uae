@@ -7,11 +7,32 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Browse</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-            </ul>
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Browse</a></li>
+
+    @guest
+        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
+        <li class="nav-item ms-lg-2">
+            <a class="btn btn-warning btn-sm px-3" href="{{ route('register') }}">Sign up</a>
+        </li>
+    @endguest
+
+    @auth
+    <li class="nav-item">
+    <a class="nav-link" href="{{ route(auth()->user()->dashboardRoute()) }}">Dashboard</a>
+</li>
+        <li class="nav-item">
+            <span class="nav-link text-white-50">{{ auth()->user()->name }}</span>
+        </li>
+        <li class="nav-item ms-lg-2">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-outline-light btn-sm px-3">Log out</button>
+            </form>
+        </li>
+    @endauth
+</ul>
         </div>
     </div>
 </nav>
