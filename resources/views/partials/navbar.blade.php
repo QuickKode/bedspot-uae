@@ -20,18 +20,18 @@
 
     @auth
     <li class="nav-item">
-    <a class="nav-link" href="{{ route(auth()->user()->dashboardRoute()) }}">Dashboard</a>
-</li>
-        <li class="nav-item">
-            <span class="nav-link text-white-50">{{ auth()->user()->name }}</span>
-        </li>
-        <li class="nav-item ms-lg-2">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn btn-outline-light btn-sm px-3">Log out</button>
-            </form>
-        </li>
-    @endauth
+        <a class="nav-link" href="{{ route(auth()->user()->dashboardRoute()) }}">Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('profile.edit') }}">{{ auth()->user()->name }}</a>
+    </li>
+    <li class="nav-item ms-lg-2">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-outline-light btn-sm px-3">Log out</button>
+        </form>
+    </li>
+@endauth
 </ul>
         </div>
     </div>

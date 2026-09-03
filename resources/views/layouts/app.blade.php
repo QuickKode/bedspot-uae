@@ -11,8 +11,9 @@
     @include('partials.navbar')
 
     <main class="flex-grow-1">
-        @yield('content')
-    </main>
+    @include('partials.flash')
+    @yield('content')
+</main>
 
     @include('partials.footer')
 

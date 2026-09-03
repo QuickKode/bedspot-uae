@@ -26,6 +26,9 @@
                             <input type="password" name="password" id="password"
                                    class="form-control @error('password') is-invalid @enderror" required>
                             @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <div class="text-end mb-3">
+    <a href="{{ route('password.request') }}" class="small">Forgot password?</a>
+</div>
                         </div>
 
                         <div class="form-check mb-4">
