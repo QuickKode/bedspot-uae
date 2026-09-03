@@ -21,7 +21,7 @@ class AuthenticatedSessionController extends Controller
     {
         $credentials = $request->validated();
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (! Auth::attempt([...$credentials, 'is_active' => true], $request->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => 'These credentials do not match our records.',
             ]);
