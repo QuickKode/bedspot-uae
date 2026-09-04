@@ -25,8 +25,8 @@ class NewPasswordController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'token'    => ['required'],
-            'email'    => ['required', 'email'],
+            'token' => ['required'],
+            'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', PasswordRule::defaults()],
         ]);
 
@@ -34,7 +34,7 @@ class NewPasswordController extends Controller
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user) use ($request) {
                 $user->forceFill(['password' => $request->password])
-                     ->setRememberToken(Str::random(60));
+                    ->setRememberToken(Str::random(60));
                 $user->save();
 
                 event(new PasswordReset($user));

@@ -3,9 +3,9 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Owner\DashboardController as OwnerDashboard;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Seeker\DashboardController as SeekerDashboard;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
